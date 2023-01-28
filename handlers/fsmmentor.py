@@ -1,9 +1,9 @@
-from aiogram import types, Dispatcher
+from aiogram import types
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from config import ADMIN
 from config import bot, Dispatcher
+from database.bot_db import sql_command_insert
 
 
 class FSMAdmin(StatesGroup):
@@ -66,6 +66,7 @@ async def load_group(message: types.Message, state: FSMContext):
 
 async def submit(message: types.Message, state: FSMContext):
     if message.text.lower()== 'да':
+        await sql_command_insert(state)
         await state.finish()
         await bot.send_message(message.from_user.id, 'Регистрация завершена')
 

@@ -6,7 +6,7 @@ from aiogram.utils import executor
 client.register_message_handelers_client(dp)
 callback.register_handler_callback(dp)
 fsmmentor.register_handlers_fsmmentor(dp)
-# admin.register_message_handelers_client(dp),
+admin.register_handlers_admin(dp)
 
 extra.register_handler_extra(dp)
 
