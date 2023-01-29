@@ -1,7 +1,7 @@
 from config import bot, Dispatcher
 from aiogram import types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from parser.film import parser
 
 
 async def start_handler(message: types.Message):
@@ -37,9 +37,21 @@ async def meme (message: types.Message):
 async def pin (message:types.Message) :
     await bot.pin_chat_message(message.chat.id, message.message_id)
 
+async def get_film(message: types.Message):
+    film = parser()
+    for i in film:
+        await message.answer(
+            f"{i['link']}\n\n"
+            f"{i['title']}\n"
+            f"{i['status']}\n"
+            f"#Y{i['date']}\n"
+            f"#{i['genre']}\n"
+            f"#{i['country']}"
+        )
 
 def register_message_handelers_client(dp:Dispatcher):
     dp.register_message_handler(start_handler, commands=["start"])
     dp.register_message_handler(quiz_1, commands=["quiz"])
     dp.register_message_handler(meme, commands=["meme"])
     dp.register_message_handler(pin, commands=["pin"], commands_prefix='!')
+    dp.register_message_handler(get_film, commands=['film'])
