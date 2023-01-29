@@ -46,3 +46,4 @@ def parser():
         return film
     else:
         raise Exception("Error parser!")
+parser()

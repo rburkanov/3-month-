@@ -27,7 +27,7 @@ async def quiz_1(message: types.Message):
         is_anonymous=True,
         type='quiz',
         correct_option_id=0,
-        reply_markup= markup
+        reply_markup=markup
     )
 
 async def meme (message: types.Message):
