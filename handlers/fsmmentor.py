@@ -7,11 +7,12 @@ from database.bot_db import sql_command_insert
 
 
 class FSMAdmin(StatesGroup):
-    ID = State()
+    id = State()
     name = State()
     age = State()
     nap = State()
     group = State()
+    submit = State()
 
 
 async def fsm_start(message: types.Message):

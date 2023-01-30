@@ -1,7 +1,7 @@
 from config import bot, Dispatcher
 from aiogram import types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from parser.film import parser
+from parsir.film import parser
 
 
 async def start_handler(message: types.Message):
@@ -40,7 +40,9 @@ async def pin (message:types.Message) :
 async def get_film(message: types.Message):
     film = parser()
     for i in film:
-        await message.answer(
+        await bot.send_message(
+            message.from_user.id,
+
             f"{i['link']}\n\n"
             f"{i['title']}\n"
             f"{i['status']}\n"
